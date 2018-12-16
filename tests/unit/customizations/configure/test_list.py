@@ -91,7 +91,7 @@ class TestConfigureListCommand(unittest.TestCase):
             credentials=credentials)
         session.session_var_map = {
             'region': ('region', 'AWS_DEFAULT_REGION'),
-            'profile': ('profile', 'AWS_DEFAULT_PROFILE')}
+            'profile': ('profile', 'AWS_PROFILE')}
         session.full_config = {
             'profiles': {'default': {'region': 'AWS_DEFAULT_REGION'}}}
         stream = six.StringIO()
@@ -100,7 +100,7 @@ class TestConfigureListCommand(unittest.TestCase):
         rendered = stream.getvalue()
         # The profile came from an env var.
         self.assertRegexpMatches(
-            rendered, 'profile\s+myprofilename\s+env\s+AWS_DEFAULT_PROFILE')
+            rendered, 'profile\s+myprofilename\s+env\s+AWS_PROFILE')
         # The region came from the config file.
         self.assertRegexpMatches(
             rendered, 'region\s+us-west-2\s+config-file\s+/config/location')
